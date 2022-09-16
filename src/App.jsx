@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { CounterContext } from "./contexts/counter.context";
 import LifeCycle from "./components/life-cycle.component";
 import "./App.scss";
 
 const App = () => {
-  const [counter, setCounter] = useState(0);
+  const {counter, setCounter} = useContext(CounterContext)
   const [componentIsShown, setComponentIsShown] = useState(false);
 
   const decreaseCounter = () => {
@@ -39,7 +40,7 @@ const App = () => {
       {componentIsShown && (
         <div>
           <h2>LifeCycle component</h2>
-          <LifeCycle counter={counter} />
+          <LifeCycle />
         </div>
       )}
       <div className="buttons-container">
