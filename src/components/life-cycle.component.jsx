@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
-import { CounterContext } from "../contexts/counter.context";
+import React from "react";
+import {useSelector} from 'react-redux'
+import { selectCounterValue } from "../store/counter/counter.selector";
 
 
 const LifeCycle = () => {
-    const {counter} = useContext(CounterContext)
+    const counter = useSelector(selectCounterValue)
 
     return <div>Counter value: {counter}</div>;
 }

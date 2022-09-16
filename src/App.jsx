@@ -1,22 +1,25 @@
-import React, { useState, useContext } from "react";
-import { CounterContext } from "./contexts/counter.context";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {decreaseCounterAction, increaserCounterAction, resetCounterAction} from './store/counter/counter.actions'
+import { selectCounterValue } from "./store/counter/counter.selector";
 import LifeCycle from "./components/life-cycle.component";
 import "./App.scss";
 
 const App = () => {
-  const {counter, setCounter} = useContext(CounterContext)
+  const disppatch = useDispatch();
+  const counter = useSelector(selectCounterValue)
   const [componentIsShown, setComponentIsShown] = useState(false);
 
   const decreaseCounter = () => {
-    setCounter(counter > 0 ? counter - 1 : 0);
+    disppatch(decreaseCounterAction())
   };
 
   const resetCounter = () => {
-    setCounter(0);
+    disppatch(resetCounterAction())
   };
 
   const increaseCounter = () => {
-    setCounter(counter + 1);
+    disppatch(increaserCounterAction())
   };
 
   const hideComponent = () => {

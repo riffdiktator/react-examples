@@ -1,16 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { CounterProvider } from "./contexts/counter.context";
+import store from "./store/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CounterProvider>
-      <App />
-    </CounterProvider>
+    <Provider store={store}>
+      <CounterProvider>
+        <App />
+      </CounterProvider>
+    </Provider>
   </React.StrictMode>
 );
 
