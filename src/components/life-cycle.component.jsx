@@ -13,7 +13,7 @@ class LifeCycle extends Component {
 
 
   shouldComponentUpdate(prevProps) {
-    console.log('this should update: ',prevProps.counter !== this.props.counter)
+    console.log('this should update: ')
     return prevProps.counter !== this.props.counter;
   }
 

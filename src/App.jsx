@@ -1,68 +1,57 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import LifeCycle from "./components/life-cycle.component";
 import "./App.scss";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { counter: 0, showComponent: false };
-  }
+const App = () => {
+  const [counter, setCounter] = useState(0);
+  const [componentIsShown, setComponentIsShown] = useState(false);
 
-  decreaseCounter() {
-    const { counter } = this.state;
-    this.setState({ counter: counter > 0 ? counter - 1 : 0 });
-  }
+  const decreaseCounter = () => {
+    setCounter(counter > 0 ? counter - 1 : 0);
+  };
 
-  increaseCounter() {
-    const { counter } = this.state;
-    this.setState({ counter: counter + 1 });
-  }
+  const resetCounter = () => {
+    setCounter(0);
+  };
 
-  resetCounter() {
-    this.setState({ counter: 0 });
-  }
+  const increaseCounter = () => {
+    setCounter(counter + 1);
+  };
 
-  hideComponent() {
-    this.setState({ showComponent: false });
-  }
+  const hideComponent = () => {
+    setComponentIsShown(false);
+  };
 
-  showComponent() {
-    this.setState({ showComponent: true });
-  }
+  const showComponent = () => {
+    setComponentIsShown(true);
+  };
 
-  render() {
-    const { counter } = this.state;
-    return (
-      <div className="app-container">
-        <h1>Counter: {counter}</h1>
+  return (
+    <div className="app-container">
+      <h1>Counter: {counter}</h1>
 
-        <div className="buttons-container">
-          <button onClick={() => this.decreaseCounter()}>
-            Decrease counter
-          </button>
-          <button onClick={() => this.resetCounter()}>Reset counter</button>
-          <button onClick={() => this.increaseCounter()}>
-            Increase counter
-          </button>
-        </div>
-
-        {this.state.showComponent && (
-          <div>
-            <h2>LifeCycle component</h2>
-            <LifeCycle counter={this.state.counter} />
-          </div>
-        )}
-        <div className="buttons-container">
-          <button onClick={() => this.hideComponent()}>
-            Hide LifeCycle component
-          </button>
-          <button onClick={() => this.showComponent()}>
-            Show LifeCycle component
-          </button>
-        </div>
+      <div className="buttons-container">
+        <button onClick={() => decreaseCounter()}>Decrease counter</button>
+        <button onClick={() => resetCounter()}>Reset counter</button>
+        <button onClick={() => increaseCounter()}>Increase counter</button>
       </div>
-    );
-  }
-}
+
+      {componentIsShown && (
+        <div>
+          <h2>LifeCycle component</h2>
+          <LifeCycle counter={counter} />
+        </div>
+      )}
+      <div className="buttons-container">
+        <button onClick={() => hideComponent()}>
+          Hide LifeCycle component
+        </button>
+        <button onClick={() => showComponent()}>
+          Show LifeCycle component
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default App;
